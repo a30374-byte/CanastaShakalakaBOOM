@@ -1,11 +1,12 @@
 import java.util.Scanner;
 
-public class Canastaa {
+public class Canasta {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
         int iCase;
         int iLanzamiento;
+        int iCanastas = 0;
 
         int[] arrLanzamientos4 = {0, 1, 1, 1}; // 4 lanzamientos
         int[] arrLanzamientos5 = {1, 0, 0, 0, 1}; // 5 lanzamientos
@@ -33,37 +34,43 @@ public class Canastaa {
                     System.out.println("¿Cuántos lanzamientos has realizado? (Entre 4 y 8)");
                     iLanzamiento = sc.nextInt();
 
-                } while (iLanzamiento < 1 || iLanzamiento > 4);
+                } while (iLanzamiento <= 2 || iLanzamiento > 8);
 
                 switch (iLanzamiento) {
                     case 4:
-                        int iLoopBreak4 = arrLanzamientos4.length;
+                        int iLoopBreak4 = 0;
+                        iCanastas = contarCanastas(arrLanzamientos4, iLoopBreak4);
 
-                        contarCanastas(arrLanzamientos4, iLoopBreak4);
+                        System.out.printf("Ha realizado %d canastas en %d lanzamientos", iCanastas, arrLanzamientos4.length);
+
 
                         break;
                     case 5:
-                        int iLoopBreak5 = arrLanzamientos5.length;
+                        int iLoopBreak5 = 0;
+                        iCanastas = contarCanastas(arrLanzamientos5, iLoopBreak5);
 
-                        contarCanastas(arrLanzamientos5, iLoopBreak5);
+                        System.out.printf("Ha realizado %d canastas en %d lanzamientos", iCanastas, arrLanzamientos5.length);
 
                         break;
                     case 6:
-                        int iLoopBreak6 = arrLanzamientos6.length;
+                        int iLoopBreak6 = 0;
+                        iCanastas = contarCanastas(arrLanzamientos6, iLoopBreak6);
 
-                        contarCanastas(arrLanzamientos6, iLoopBreak6);
+                        System.out.printf("Ha realizado %d canastas en %d lanzamientos", iCanastas, arrLanzamientos6.length);
 
                         break;
                     case 7:
-                        int iLoopBreak7 = arrLanzamientos7.length;
+                        int iLoopBreak7 = 0;
+                        iCanastas = contarCanastas(arrLanzamientos7, iLoopBreak7);
 
-                        contarCanastas(arrLanzamientos7, iLoopBreak7);
+                        System.out.printf("Ha realizado %d canastas en %d lanzamientos", iCanastas, arrLanzamientos7.length);
 
                         break;
                     case 8:
-                        int iLoopBreak8 = arrLanzamientos8.length;
+                        int iLoopBreak8 = 0;
+                        iCanastas = contarCanastas(arrLanzamientos8, iLoopBreak8);
 
-                        contarCanastas(arrLanzamientos8, iLoopBreak8);
+                        System.out.printf("Ha realizado %d canastas en %d lanzamientos", iCanastas, arrLanzamientos8.length);
 
                         break;
                 }
@@ -73,20 +80,18 @@ public class Canastaa {
     }
 
     public static int contarCanastas(int[] arrLanzamientos, int iLoopBreak){
-        int iRet = 0;
+        int iCanastas = 0;
 
-        if (iLoopBreak < 1) {
-            iRet = 1;
+        if (iLoopBreak >= arrLanzamientos.length) {
+            return 0;
         }
         else {
-            if (arrLanzamientos[iLoopBreak] == 1){
-                iRet = 1 + contarCanastas(arrLanzamientos, iLoopBreak - 1);
-            }
+            iCanastas += contarCanastas(arrLanzamientos, iLoopBreak + 1) + arrLanzamientos[iLoopBreak];
+        }
 
-        return iRet;
-
+        return iCanastas;
     }
-
+    /*
     }
     public static int calcularPorcentaje( ){
 
@@ -99,4 +104,5 @@ public class Canastaa {
     public static boolean existeRacha(int[] lanzamientos, int n){
 
     }
+    */
 }
